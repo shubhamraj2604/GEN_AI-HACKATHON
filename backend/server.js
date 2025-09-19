@@ -8,10 +8,8 @@ const app = express();
 app.use(express.json());   // For the middleware
 const PORT = 3000;
 
-
 app.use('/api/products' , useProduct)
 app.use('/api/user' , artitist)
-
 
 async function initDb(params) {
   try {
@@ -25,8 +23,6 @@ async function initDb(params) {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `;
-
-
     await sql`
       CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
@@ -43,6 +39,18 @@ async function initDb(params) {
   ALTER TABLE products
   ADD COLUMN IF NOT EXISTS emotion VARCHAR(50);
 `;
+
+  await sql`
+  ALTER TABLE products
+  ADD COLUMN IF NOT EXISTS emotion VARCHAR(50);
+`;
+
+   await sql`
+  ALTER TABLE products
+  ADD COLUMN IF NOT EXISTS story TEXT,
+  ADD COLUMN IF NOT EXISTS tags TEXT[];
+`;
+
     console.log("✅ Database tables created successfully");
   } catch (error) {
     console.error("❌ Error creating database tables:", error);
