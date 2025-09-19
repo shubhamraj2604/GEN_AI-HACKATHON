@@ -39,12 +39,15 @@ async function initDb(params) {
       );
     `;
 
+   await sql`
+  ALTER TABLE products
+  ADD COLUMN IF NOT EXISTS emotion VARCHAR(50);
+`;
     console.log("✅ Database tables created successfully");
   } catch (error) {
     console.error("❌ Error creating database tables:", error);
   }
 }
-
 initDb().then(() => {
   app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}`);
