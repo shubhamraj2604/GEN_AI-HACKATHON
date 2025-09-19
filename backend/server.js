@@ -1,6 +1,6 @@
 import express from "express";
 import useProduct from "../backend/routes/useProduct.js"
-import artitist from './routes/artist.js'
+import artist from './routes/artist.js'
 import { sql } from "./config/db.js";
 import dotenv from 'dotenv'
 dotenv.config();
@@ -9,7 +9,7 @@ app.use(express.json());   // For the middleware
 const PORT = 3000;
 
 app.use('/api/products' , useProduct)
-app.use('/api/user' , artitist)
+app.use('/api/user' , artist)
 
 async function initDb(params) {
   try {
