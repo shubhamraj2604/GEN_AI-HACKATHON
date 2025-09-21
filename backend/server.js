@@ -3,12 +3,17 @@ import useProduct from "../backend/routes/useProduct.js"
 import artist from './routes/artist.js'
 import { sql } from "./config/db.js";
 import dotenv from 'dotenv'
+import aiRoutes from "../routes/aiRoutes.js";
+
 dotenv.config();
 const app = express();
 app.use(express.json());   // For the middleware
 const PORT = 3000;
 
 app.use('/api/products' , useProduct)
+feature/ai-integration
+app.use('/api/user' , artitist)
+app.use("/api/ai", aiRoutes)
 app.use('/api/user' , artist)
 
 async function initDb(params) {
